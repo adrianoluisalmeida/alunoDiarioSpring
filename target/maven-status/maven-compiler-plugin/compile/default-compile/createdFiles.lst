@@ -1,6 +1,10 @@
-br/csi/controller/UsuarioController.class
 br/csi/util/ConectaPostgres.class
+br/csi/controller/DashboardController.class
+br/csi/controller/TurmasController.class
 br/csi/dao/UsuarioDAO.class
-br/csi/controller/IndexController.class
 br/csi/modelo/Usuario.class
 br/csi/controller/PrimeiroControlador.class
+br/csi/controller/UsuarioController.class
+br/csi/controller/IndexController.class
+br/csi/dao/TurmaDAO.class
+br/csi/modelo/Turma.class
