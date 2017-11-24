@@ -55,7 +55,7 @@ public class TurmaDAO {
         
         PreparedStatement stmt = 
                     ConectaPostgres.getConexao().prepareStatement(sql);
-        stmt.setString(1, turma.getNome());
+        stmt.setInt(1, turma.getId());
         stmt.executeUpdate();
         return true;
     }

@@ -2,7 +2,7 @@
 
 <div class="panel panel-default m-top-20">
     <div class="panel-heading">
-        <a class="btn btn-primary">Cadastrar nova Turma</a>
+        <a href="${pageContext.request.contextPath}/turmas/criar" class="btn btn-primary">Cadastrar nova Turma</a>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
@@ -20,7 +20,7 @@
                         <td>${turma.id}</td>
                         <td>${turma.nome}</td>
                         <td>
-                            <a href="#" class="btn btn-danger">Remover</a>
+                            <a href="turmas/remove/${turma.id}" class="btn btn-danger">Remover</a>
                             <a href="turmas/editar/${turma.id}" class="btn btn-primary">Editar</a>
                         </td>
                     </tr>

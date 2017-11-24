@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  *
@@ -26,7 +27,7 @@ public class TurmasController {
 
     @Autowired
     private TurmaDAO dao;
-    
+
     @RequestMapping("/turmas")
     public String index(Model model) {
         try {
@@ -38,19 +39,65 @@ public class TurmasController {
 
         return "app";
     }
-    
-//    @Autowired
-//    private TurmaDAO dao;
-    
+
+    @RequestMapping(value = "/turmas/criar", method = GET)
+    public String edit(Model model) {
+        model.addAttribute("page", "turmas/create");
+
+        return "app";
+    }
+
+    @RequestMapping(value = "/turmas/store", method = POST)
+    public String store(Turma turma) {
+
+        try {
+            dao.inserir(turma);
+        } catch (Exception ex) {
+            Logger.getLogger(TurmasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "redirect:/turmas";
+    }
+
     @RequestMapping(value = "/turmas/editar/{id}", method = GET)
     public String edit(@PathVariable("id") int id, Model model) {
         try {
             model.addAttribute("turma", dao.get(id));
+            model.addAttribute("id", id);
         } catch (Exception ex) {
             Logger.getLogger(TurmasController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         model.addAttribute("page", "turmas/edit");
+        model.addAttribute("page", "turmas/edit");
         return "app";
+    }
+
+    @RequestMapping(value = "/turmas/update/{id}", method = POST)
+    public String update(@PathVariable("id") int id, Turma turma) {
+
+        turma.setId(id);
+        
+        try {
+            dao.atualizar(turma);
+        } catch (Exception ex) {
+            Logger.getLogger(TurmasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "redirect:/turmas";
+    }
+    
+    @RequestMapping(value = "/turmas/remove/{id}", method = GET)
+    public String remove(@PathVariable("id") int id, Turma turma){
+        
+        turma.setId(id);
+        
+        try {
+            dao.deletar(turma);
+        } catch (Exception ex) {
+            Logger.getLogger(TurmasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "redirect:/turmas";
+        
     }
 
 }
