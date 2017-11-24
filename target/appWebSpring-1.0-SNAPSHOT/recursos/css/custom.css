@@ -1,0 +1,146 @@
+body {
+    background-color: #f6fffe;
+}
+
+.form-login {
+    background: #FFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    border: 1px solid #E1E1E1;
+    box-sizing: border-box;
+    padding: 5px 15px 30px;
+    margin: 20px 0;
+}
+
+.form-login .form-titulo {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-login .form-group label {
+    color: #72777C;
+    font-weight: normal;
+}
+
+.form-login .btn-submit {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.navbar{
+    margin: 0;
+}
+
+.sub-navbar{
+    width: 100%;
+    height: 45px;
+    background: #ececec;
+    padding: 5px 15px;
+}
+.sub-navbar .title{
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 7px;
+
+}
+.sub-navbar .breadcrumb{
+    background-color:  transparent;
+    text-align: right;
+}
+
+.no-padding{
+    padding: 0px;
+}
+
+.no-padding-left{
+    padding-left: 0 !important;
+}
+
+.no-padding-right{
+    padding-right: 0 !important;
+}
+
+.m-top-20{
+    margin-top: 20px !important;  
+}
+
+.es-footer{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    background: #262626 !important;
+    padding: 20px;
+    color: #fff;
+}
+.es-footer ul{
+    width: 100%;
+    height: 20px;
+    padding: 0;
+}
+.es-footer ul li{
+    list-style: none;
+    float: left;
+    padding: 10px;
+}
+
+.es-footer ul li a{
+    color: #fff;
+}
+
+.es-footer p{
+    margin-top: 10px;
+}
+
+/*CALENDARIO*/
+
+.agenda {  }
+
+/* Dates */
+.agenda .agenda-date { width: 170px; }
+.agenda .agenda-date .dayofmonth {
+    width: 40px;
+    font-size: 36px;
+    line-height: 36px;
+    float: left;
+    text-align: right;
+    margin-right: 10px; 
+}
+.agenda .agenda-date .shortdate {
+    font-size: 0.75em; 
+}
+
+
+/* Times */
+.agenda .agenda-time { width: 140px; } 
+
+
+/* Events */
+.agenda .agenda-events {  } 
+.agenda .agenda-events .agenda-event {  } 
+
+@media (max-width: 767px) {
+
+}
+
+
+.header-m{
+    margin: 20px 0 20px;
+}
+
+.jumbotron{
+    padding-top: 0px !important; 
+    padding-bottom: 0px !important;
+}
+
+.jumbotron h2{
+    margin: 0px;
+    background-color: #67a7a5;
+    color: #fff;
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important;
+}
+
+.btn-primary{
+    background-color: #66a7a5;
+    border-color: #66a7a5;
+}
