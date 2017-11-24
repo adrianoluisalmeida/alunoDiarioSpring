@@ -1,6 +1,9 @@
 package br.csi.modelo;
 
-public class Usuario {
+import java.io.Serializable;
+
+
+public class Usuario implements Serializable {
 
     private String login;
     private String senha;

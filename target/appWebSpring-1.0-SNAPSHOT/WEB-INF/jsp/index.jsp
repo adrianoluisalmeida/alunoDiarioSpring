@@ -24,7 +24,7 @@
 
 
                     <br />
-                    <form action="usuarioServlet" method="get">
+                    <form action="usuarioLogar" method="POST">
                         <div class="form-group">
                             <label for="login">LOGIN:</label>
                             <input type="text" class="form-control" name="login" />		

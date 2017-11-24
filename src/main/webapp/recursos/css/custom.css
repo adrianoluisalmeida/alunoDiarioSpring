@@ -144,3 +144,18 @@ body {
     background-color: #66a7a5;
     border-color: #66a7a5;
 }
+
+.navbar-default{
+    background-color: #66a7a5;
+
+}
+.navbar-default .navbar-brand{
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a{
+    color: #fff;
+}
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a{
+    background-color: #86b3b2;
+}
