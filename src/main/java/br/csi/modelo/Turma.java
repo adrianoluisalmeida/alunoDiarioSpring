@@ -1,14 +1,20 @@
 package br.csi.modelo;
 
 import java.io.Serializable;
+//import static javax.swing.text.StyleConstants.Size;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author adriano
  */
-public class Turma implements Serializable{
+public class Turma implements Serializable {
 
     private Integer id;
+    
+    @NotNull(message="O nome deve ser preenchido")
+    @Size(min = 5, message="Nome deve ter pelo menos 5 carateres")
     private String nome;
 
     public Turma() {

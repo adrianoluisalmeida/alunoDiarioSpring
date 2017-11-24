@@ -10,9 +10,11 @@ import br.csi.dao.TurmaDAO;
 import br.csi.modelo.Turma;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -48,8 +50,14 @@ public class TurmasController {
     }
 
     @RequestMapping(value = "/turmas/store", method = POST)
-    public String store(Turma turma) {
+    public String store(@Valid Turma turma, BindingResult result, Model model) {
 
+        if (result.hasErrors()) {
+            model.addAttribute("page", "turmas/create");
+            
+            return "app";
+        }
+        
         try {
             dao.inserir(turma);
         } catch (Exception ex) {
@@ -75,7 +83,7 @@ public class TurmasController {
     public String update(@PathVariable("id") int id, Turma turma) {
 
         turma.setId(id);
-        
+
         try {
             dao.atualizar(turma);
         } catch (Exception ex) {
@@ -84,20 +92,20 @@ public class TurmasController {
 
         return "redirect:/turmas";
     }
-    
+
     @RequestMapping(value = "/turmas/remove/{id}", method = GET)
-    public String remove(@PathVariable("id") int id, Turma turma){
-        
+    public String remove(@PathVariable("id") int id, Turma turma) {
+
         turma.setId(id);
-        
+
         try {
             dao.deletar(turma);
         } catch (Exception ex) {
             Logger.getLogger(TurmasController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return "redirect:/turmas";
-        
+
     }
 
 }
