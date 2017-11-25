@@ -3,9 +3,9 @@ package br.csi.dao;
 import br.csi.modelo.Aluno;
 import br.csi.modelo.Turma;
 import br.csi.util.ConectaPostgres;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
@@ -33,7 +33,7 @@ public class AlunoDAO {
         stmt.setString(2, a.getPlano_saude());
         stmt.setString(3, a.getPlano_numero());
         stmt.setString(4, a.getSexo());
-        stmt.setDate(5, a.getNascimento());
+        stmt.setDate(5, new java.sql.Date(a.getNascimento().getTime()));
         stmt.setInt(6, a.getTurma().getId());
         stmt.setInt(7, a.getId());
 
@@ -80,7 +80,7 @@ public class AlunoDAO {
         stmt.setString(2, aluno.getPlano_saude());
         stmt.setString(3, aluno.getPlano_numero());
         stmt.setString(4, aluno.getSexo());
-        stmt.setDate(5, aluno.getNascimento());
+        stmt.setDate(5, new java.sql.Date(aluno.getNascimento().getTime()));
         stmt.setInt(6, aluno.getTurma().getId());
 
         stmt.executeUpdate();

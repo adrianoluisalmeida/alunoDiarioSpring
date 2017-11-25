@@ -7,7 +7,8 @@
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/_bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/css/custom.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/css/bootstrap-datetimepicker.min.css">
+        <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/css/bootstrap-datetimepicker.min.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 
     </head>
     <body>
@@ -57,19 +58,15 @@
         <script src="${pageContext.request.contextPath}/recursos/_bootstrap/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/custom.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/medicamentos.js"></script>
-        <script src="${pageContext.request.contextPath}/recursos/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="${pageContext.request.contextPath}/recursos/js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+        <script src="${pageContext.request.contextPath}/recursos/js/jquery.mask.js"></script>
         <script type="text/javascript">
-            $('.form_date').datetimepicker({
-                language: 'pt-BR',
-                weekStart: 1,
-                todayBtn: 1,
-                autoclose: 1,
-                todayHighlight: 1,
-                startView: 2,
-                minView: 2,
-                forceParse: 0
+            $("#data").datepicker({
+                minDate: 0,
+                dateFormat: "dd/mm/yyyy"
             });
+            $("#data").mask("00/00/0000");
+
         </script>
 
     </body>

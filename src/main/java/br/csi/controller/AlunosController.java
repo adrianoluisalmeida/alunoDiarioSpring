@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
+//import java.util.Date;
+import br.csi.util.DateUtils;
+import java.util.Date;
 
 /**
  *
@@ -61,10 +64,14 @@ public class AlunosController {
     private AlunoMedicamentoDAO mdao;
 
     @RequestMapping(value = "/alunos/store", method = POST)
-    public String store(@Valid Aluno aluno, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id) {
+    public String store(@Valid Aluno aluno, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) {
 
         aluno.setTurma(new Turma(turma_id));
-
+//        System.out.println("Nascimento: " + nascimento);
+//        DateUtils dataConversao = new DateUtils();
+//        Date dataConvertida = dataConversao.toDate(nascimento, "dd/MM/yyyy");
+        aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
+        
         if (result.hasErrors()) {
             model.addAttribute("page", "alunos/create");
             return "app";
