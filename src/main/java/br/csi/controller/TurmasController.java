@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.csi.controller;
 
-//import br.csi.dao.TurmaDAO;
 import br.csi.dao.TurmaDAO;
 import br.csi.modelo.Turma;
 import java.util.logging.Level;
@@ -43,7 +37,7 @@ public class TurmasController {
     }
 
     @RequestMapping(value = "/turmas/criar", method = GET)
-    public String edit(Model model) {
+    public String create(Model model) {
         model.addAttribute("page", "turmas/create");
 
         return "app";

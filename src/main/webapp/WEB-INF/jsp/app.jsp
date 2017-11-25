@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/_bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/css/custom.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/recursos/css/bootstrap-datetimepicker.min.css">
 
     </head>
     <body>
@@ -55,7 +56,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/_bootstrap/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/custom.js"></script>
-
+        <script src="${pageContext.request.contextPath}/recursos/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="${pageContext.request.contextPath}/recursos/js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
+        <script type="text/javascript">
+            $('.form_date').datetimepicker({
+                language: 'pt-BR',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+        </script>
 
     </body>
 </html>

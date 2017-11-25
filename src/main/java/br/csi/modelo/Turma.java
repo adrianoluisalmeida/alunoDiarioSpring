@@ -30,6 +30,10 @@ public class Turma implements Serializable {
         this.nome = nome;
     }
 
+    public Turma(int id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
