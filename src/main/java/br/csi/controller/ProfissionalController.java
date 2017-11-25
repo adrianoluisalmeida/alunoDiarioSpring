@@ -114,6 +114,15 @@ public class ProfissionalController {
 
         profissional.setId(id);
 
+        //REMOVE AS TURMAS DO PROFISSIONAL
+        ProfissionalTurma profTurma = new ProfissionalTurma();
+        profTurma.setProfissional(profissional);
+        try {
+            daoProfTurma.deletar(profTurma);
+        } catch (Exception ex) {
+            Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         //INSERE AS TURMAS QUE O PROFISSIONAL É RESPONSAVEL
         for (Integer integer : turmas) {
 

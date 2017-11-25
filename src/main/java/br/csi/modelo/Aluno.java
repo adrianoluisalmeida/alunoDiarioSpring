@@ -56,6 +56,10 @@ public class Aluno implements Serializable {
 
     }
 
+    public Aluno(int id) {
+       this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

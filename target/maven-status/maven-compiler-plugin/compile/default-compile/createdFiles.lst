@@ -1,11 +1,14 @@
+br/csi/dao/AlunoMedicamentoDAO.class
 br/csi/controller/DashboardController.class
 br/csi/dao/UsuarioDAO.class
+br/csi/controller/MedicamentosController.class
 br/csi/modelo/Usuario.class
 br/csi/controller/UsuarioController.class
 br/csi/controller/IndexController.class
 br/csi/controller/ProfissionalController.class
 br/csi/dao/TurmaDAO.class
 br/csi/modelo/Profissional.class
+br/csi/modelo/AlunoMedicamento.class
 br/csi/dao/ProfissionalDAO.class
 br/csi/util/ConectaPostgres.class
 br/csi/controller/AlunosController.class

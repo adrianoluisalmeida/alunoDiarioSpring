@@ -56,6 +56,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/_bootstrap/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/custom.js"></script>
+        <script src="${pageContext.request.contextPath}/recursos/js/medicamentos.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/bootstrap-datetimepicker.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
         <script type="text/javascript">

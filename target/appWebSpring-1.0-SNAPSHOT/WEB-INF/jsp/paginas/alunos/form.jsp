@@ -50,5 +50,17 @@
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 </div>
+<!--
+<h3>Medicação</h3>        
+<div class="form-group">
+    
+    <input type="hidden" name="medicamentos[0][id]" value="" />
+    
+    <label>Nome do medicamento:</label>
+    <input type="text" name="medicamentos[0]['nome']" class="form-control">
+    
+    <label>Descrição:</label>
+    <input type="text" name="medicamentos[0]['descricao']" class="form-control">
+</div>-->
 
 <button type="submit" class="btn btn-primary pull-right">Salvar</button>

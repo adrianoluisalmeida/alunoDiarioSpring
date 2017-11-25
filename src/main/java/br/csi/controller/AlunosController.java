@@ -1,9 +1,11 @@
 package br.csi.controller;
 
 import br.csi.dao.AlunoDAO;
+import br.csi.dao.AlunoMedicamentoDAO;
 import br.csi.dao.TurmaDAO;
 import br.csi.modelo.Aluno;
 import br.csi.modelo.Turma;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +57,9 @@ public class AlunosController {
         return "app";
     }
 
+    @Autowired
+    private AlunoMedicamentoDAO mdao;
+
     @RequestMapping(value = "/alunos/store", method = POST)
     public String store(@Valid Aluno aluno, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id) {
 
@@ -66,7 +71,7 @@ public class AlunosController {
         }
 
         try {
-            dao.inserir(aluno);
+            Integer aluno_id = dao.inserir(aluno);
         } catch (Exception ex) {
             Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -22,32 +22,32 @@ primary key (login)
 @Component
 public class AlunoDAO {
 
-    public boolean atualizar(Aluno a)throws Exception{
+    public boolean atualizar(Aluno a) throws Exception {
         String sql = "update aluno set nome=?, plano_saude=?, plano_numero=?, sexo=?, nascimento=?, turma_id=? "
                 + "where id = ?";
-        PreparedStatement stmt = 
-                ConectaPostgres.getConexao()
+        PreparedStatement stmt
+                = ConectaPostgres.getConexao()
                         .prepareStatement(sql);
-        
-    stmt.setString(1, a.getNome());
-    stmt.setString(2, a.getPlano_saude());
-    stmt.setString(3, a.getPlano_numero());
-    stmt.setString(4, a.getSexo());
-    stmt.setDate(5, a.getNascimento());
-    stmt.setInt(6, a.getTurma().getId());
-    stmt.setInt(7, a.getId());
-        
-    stmt.executeUpdate();
+
+        stmt.setString(1, a.getNome());
+        stmt.setString(2, a.getPlano_saude());
+        stmt.setString(3, a.getPlano_numero());
+        stmt.setString(4, a.getSexo());
+        stmt.setDate(5, a.getNascimento());
+        stmt.setInt(6, a.getTurma().getId());
+        stmt.setInt(7, a.getId());
+
+        stmt.executeUpdate();
         return true;
     }
-    
-    public Aluno get(Integer id) throws Exception{
+
+    public Aluno get(Integer id) throws Exception {
         String sql = "select * from aluno where id =?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareCall(sql);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         Aluno a = new Aluno();
-        while(rs.next()){
+        while (rs.next()) {
             a.setNome(rs.getString("nome"));
             a.setPlano_saude(rs.getString("plano_saude"));
             a.setPlano_numero(rs.getString("plano_numero"));
@@ -57,25 +57,25 @@ public class AlunoDAO {
         }
         return a;
     }
-    
-    public boolean deletar(Aluno aluno) throws Exception{
-        
+
+    public boolean deletar(Aluno aluno) throws Exception {
+
         String sql = "DELETE from aluno where id =?";
-        
-        PreparedStatement stmt = 
-                    ConectaPostgres.getConexao().prepareStatement(sql);
+
+        PreparedStatement stmt
+                = ConectaPostgres.getConexao().prepareStatement(sql);
         stmt.setInt(1, aluno.getId());
         stmt.executeUpdate();
         return true;
     }
- 
-    public boolean inserir(Aluno aluno) throws Exception {
+
+    public Integer inserir(Aluno aluno) throws Exception {
         String sql = "insert into aluno(nome, plano_saude, plano_numero, sexo, nascimento, turma_id) "
                 + "values(?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt
-                = ConectaPostgres.getConexao().prepareStatement(sql);
-        
+                = ConectaPostgres.getConexao().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+
         stmt.setString(1, aluno.getNome());
         stmt.setString(2, aluno.getPlano_saude());
         stmt.setString(3, aluno.getPlano_numero());
@@ -83,9 +83,14 @@ public class AlunoDAO {
         stmt.setDate(5, aluno.getNascimento());
         stmt.setInt(6, aluno.getTurma().getId());
 
-        System.out.println("nome:" + aluno.getNome() + "plano saude:" + aluno.getPlano_saude());
-        stmt.execute();
-        return true;
+        stmt.executeUpdate();
+
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+        return 0;
     }
 
     public ArrayList<Aluno> listar() throws Exception {
