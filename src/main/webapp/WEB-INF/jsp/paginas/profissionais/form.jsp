@@ -30,4 +30,15 @@
     <form:errors path="profissional.sexo" cssStyle="color:red"/>
 </div>
 
+<h3>Turmas:</h3>
+
+<div class="form-group">
+    <c:forEach var="turma" items="${turmas}">
+        <label>
+            <input type="checkbox" name="turmas" value="${turma.id}"> ${turma.nome}<br>
+        </label>
+    </c:forEach>
+</div>
+
+
 <button type="submit" class="btn btn-primary pull-right">Salvar</button>

@@ -7,23 +7,28 @@ import java.io.Serializable;
  * @author adriano
  */
 public class Profissional implements Serializable {
+
     private Integer id;
     private String nome;
     private String sexo;
     private String email;
     private String funcao;
 
-    public Profissional(){
+    public Profissional() {
     }
-    
-    public Profissional(Integer id, String nome, String sexo, String email, String funcao){
+
+    public Profissional(Integer id) {
+        this.id = id;
+    }
+
+    public Profissional(Integer id, String nome, String sexo, String email, String funcao) {
         this.id = id;
         this.nome = nome;
         this.sexo = sexo;
         this.email = email;
         this.funcao = funcao;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -63,7 +68,5 @@ public class Profissional implements Serializable {
     public void setFuncao(String funcao) {
         this.funcao = funcao;
     }
-    
-    
-    
+
 }

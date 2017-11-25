@@ -10,7 +10,9 @@ br/csi/dao/ProfissionalDAO.class
 br/csi/util/ConectaPostgres.class
 br/csi/controller/AlunosController.class
 br/csi/controller/TurmasController.class
+br/csi/dao/ProfissionalTurmaDAO.class
 br/csi/dao/AlunoDAO.class
 br/csi/controller/PrimeiroControlador.class
+br/csi/modelo/ProfissionalTurma.class
 br/csi/modelo/Aluno.class
 br/csi/modelo/Turma.class

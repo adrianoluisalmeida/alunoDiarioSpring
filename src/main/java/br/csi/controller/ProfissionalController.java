@@ -1,7 +1,12 @@
 package br.csi.controller;
 
 import br.csi.dao.ProfissionalDAO;
+import br.csi.dao.ProfissionalTurmaDAO;
+import br.csi.dao.TurmaDAO;
 import br.csi.modelo.Profissional;
+import br.csi.modelo.ProfissionalTurma;
+import br.csi.modelo.Turma;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -38,13 +43,13 @@ public class ProfissionalController {
         return "app";
     }
 
-//    @Autowired
-//    private TurmaDAO daoTurma;
+    @Autowired
+    private TurmaDAO daoTurma;
 
     @RequestMapping(value = "/profissionais/criar", method = GET)
     public String create(Model model) {
         try {
-//            model.addAttribute("turmas", daoTurma.listar());
+            model.addAttribute("turmas", daoTurma.listar());
         } catch (Exception ex) {
             Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,18 +58,37 @@ public class ProfissionalController {
         return "app";
     }
 
+    @Autowired
+    private ProfissionalTurmaDAO daoProfTurma;
+
     @RequestMapping(value = "/profissionais/store", method = POST)
-    public String store(@Valid Profissional profissional, BindingResult result, Model model, HttpServletRequest request) {
+    public String store(@Valid Profissional profissional, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turmas") ArrayList<Integer> turmas) {
 
 //        aluno.setTurma(new Turma(turma_id));
-
         if (result.hasErrors()) {
             model.addAttribute("page", "profissionais/create");
             return "app";
         }
 
         try {
-            dao.inserir(profissional);
+            Integer insert_id = dao.inserir(profissional);
+
+            System.out.println("INSERT ID: " + insert_id);
+
+            //INSERE AS TURMAS QUE O PROFISSIONAL É RESPONSAVEL
+            for (Integer integer : turmas) {
+
+                ProfissionalTurma pProfissionalTurma = new ProfissionalTurma();
+                pProfissionalTurma.setProfissional(new Profissional(insert_id));
+                pProfissionalTurma.setTurma(new Turma(integer));
+
+                try {
+                    daoProfTurma.inserir(pProfissionalTurma);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,7 +99,7 @@ public class ProfissionalController {
     @RequestMapping(value = "/profissionais/editar/{id}", method = GET)
     public String edit(@PathVariable("id") int id, Model model) {
         try {
-//            model.addAttribute("turmas", daoTurma.listar());
+            model.addAttribute("turmas", daoTurma.listar());
             model.addAttribute("profissional", dao.get(id));
             model.addAttribute("id", id);
         } catch (Exception ex) {
@@ -86,10 +110,23 @@ public class ProfissionalController {
     }
 
     @RequestMapping(value = "/profissionais/update/{id}", method = POST)
-    public String update(@PathVariable("id") int id, Profissional profissional) {
+    public String update(@PathVariable("id") int id, Profissional profissional, @RequestParam("turmas") ArrayList<Integer> turmas) {
 
         profissional.setId(id);
-//        aluno.setTurma(new Turma(turma_id));
+
+        //INSERE AS TURMAS QUE O PROFISSIONAL É RESPONSAVEL
+        for (Integer integer : turmas) {
+
+            ProfissionalTurma pProfissionalTurma = new ProfissionalTurma();
+            pProfissionalTurma.setProfissional(new Profissional(id));
+            pProfissionalTurma.setTurma(new Turma(integer));
+
+            try {
+                daoProfTurma.inserir(pProfissionalTurma);
+            } catch (Exception ex) {
+                Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         try {
             dao.atualizar(profissional);
@@ -100,9 +137,27 @@ public class ProfissionalController {
         return "redirect:/profissionais";
     }
 
+    /**
+     * Deleta os registros de vinculo entre turma e profissional antes e depois
+     * o profissional propriamente dito.
+     *
+     * @param id
+     * @param profissional
+     * @return
+     */
     @RequestMapping(value = "/profissionais/remove/{id}", method = GET)
     public String remove(@PathVariable("id") int id, Profissional profissional) {
+
         profissional.setId(id);
+
+        ProfissionalTurma profTurma = new ProfissionalTurma();
+        profTurma.setProfissional(profissional);
+        try {
+            daoProfTurma.deletar(profTurma);
+        } catch (Exception ex) {
+            Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         try {
             dao.deletar(profissional);
         } catch (Exception ex) {
