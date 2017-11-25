@@ -111,7 +111,7 @@ public class AlunosController {
             Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:/turmas";
+        return "redirect:/alunos";
 
     }
 

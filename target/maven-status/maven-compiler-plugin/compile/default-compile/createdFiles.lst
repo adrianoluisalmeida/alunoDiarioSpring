@@ -3,6 +3,7 @@ br/csi/dao/UsuarioDAO.class
 br/csi/modelo/Usuario.class
 br/csi/controller/UsuarioController.class
 br/csi/controller/IndexController.class
+br/csi/controller/ProfissionalController.class
 br/csi/dao/TurmaDAO.class
 br/csi/modelo/Profissional.class
 br/csi/dao/ProfissionalDAO.class

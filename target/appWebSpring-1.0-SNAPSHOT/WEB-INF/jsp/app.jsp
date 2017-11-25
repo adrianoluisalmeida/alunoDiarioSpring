@@ -31,7 +31,7 @@
                         <li class="active"><a href="${pageContext.request.contextPath}/dashboard">Home <span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/turmas">Turmas</a></li>
                         <li><a href="${pageContext.request.contextPath}/alunos">Alunos</a></li>
-                        <li><a href="${pageContext.request.contextPath}/profissionas">Profissionais</a></li>
+                        <li><a href="${pageContext.request.contextPath}/profissionais">Profissionais</a></li>
                         <li><a href="${pageContext.request.contextPath}/atividades">Atividades</a></li>
                     </ul>
 
