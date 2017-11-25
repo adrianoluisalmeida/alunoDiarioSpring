@@ -67,9 +67,6 @@ public class AlunosController {
     public String store(@Valid Aluno aluno, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) {
 
         aluno.setTurma(new Turma(turma_id));
-//        System.out.println("Nascimento: " + nascimento);
-//        DateUtils dataConversao = new DateUtils();
-//        Date dataConvertida = dataConversao.toDate(nascimento, "dd/MM/yyyy");
         aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
         
         if (result.hasErrors()) {
@@ -100,11 +97,11 @@ public class AlunosController {
     }
 
     @RequestMapping(value = "/alunos/update/{id}", method = POST)
-    public String update(@PathVariable("id") int id, Aluno aluno, @RequestParam("turma_id") int turma_id) {
+    public String update(@PathVariable("id") int id, Aluno aluno, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) {
 
         aluno.setId(id);
         aluno.setTurma(new Turma(turma_id));
-
+        aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
         try {
             dao.atualizar(aluno);
         } catch (Exception ex) {

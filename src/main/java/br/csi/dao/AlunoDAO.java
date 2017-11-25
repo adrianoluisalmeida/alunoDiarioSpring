@@ -10,15 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
-/*
-
-create table usuario(
-login varchar(50),
-senha varchar(50) not null,
-primary key (login)
-)
-
- */
 @Component
 public class AlunoDAO {
 

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class ProfissionalDAO {
 

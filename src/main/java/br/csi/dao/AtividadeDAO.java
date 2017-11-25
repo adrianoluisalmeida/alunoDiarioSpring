@@ -4,22 +4,13 @@ import br.csi.modelo.Aluno;
 import br.csi.modelo.Atividade;
 import br.csi.modelo.Turma;
 import br.csi.util.ConectaPostgres;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
-/*
-
-create table usuario(
-login varchar(50),
-senha varchar(50) not null,
-primary key (login)
-)
-
- */
 @Component
 public class AtividadeDAO {
 
@@ -31,7 +22,7 @@ public class AtividadeDAO {
                         .prepareStatement(sql);
 
         stmt.setString(1, a.getDescricao());
-        stmt.setDate(2, a.getData());
+        stmt.setDate(2, new java.sql.Date(a.getData().getTime()));
         stmt.setInt(3, a.getTurma().getId());
         stmt.setInt(4, a.getId());
 
@@ -74,7 +65,7 @@ public class AtividadeDAO {
                 = ConectaPostgres.getConexao().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
         stmt.setString(1, atividade.getDescricao());
-        stmt.setDate(2, atividade.getData());
+        stmt.setDate(2, new java.sql.Date(atividade.getData().getTime()));
         stmt.setInt(3, atividade.getTurma().getId());
 
         stmt.executeUpdate();

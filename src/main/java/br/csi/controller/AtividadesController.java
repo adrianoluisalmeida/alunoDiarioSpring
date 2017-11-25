@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
+import br.csi.util.DateUtils;
 
 /**
  *
@@ -58,9 +59,10 @@ public class AtividadesController {
 //    @Autowired
 //    private AlunoMedicamentoDAO mdao;
     @RequestMapping(value = "/atividades/store", method = POST)
-    public String store(Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id) {
+    public String store(Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("data") String data) {
 
         atividade.setTurma(new Turma(turma_id));
+        atividade.setData(DateUtils.toDate(data, "dd/MM/yyyy"));
 
 //        if (result.hasErrors()) {
 //            model.addAttribute("page", "atividades/create");
@@ -88,15 +90,13 @@ public class AtividadesController {
         return "app";
     }
 
-//    @Autowired
-//    private AtividadeDAO dao;
-
     @RequestMapping(value = "/atividades/update/{id}")
-    public String update(@PathVariable("id") int id, Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id) {
+    public String update(@PathVariable("id") int id, Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("data") String data) {
 
         atividade.setId(id);
         atividade.setTurma(new Turma(turma_id));
-
+        atividade.setData(DateUtils.toDate(data, "dd/MM/yyyy"));
+        
         try {
             dao.atualizar(atividade);
         } catch (Exception ex) {
