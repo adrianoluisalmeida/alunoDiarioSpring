@@ -1,5 +1,5 @@
 body {
-    background-color: #f6fffe;
+    background-color: #fbfbfb;
 }
 
 .form-login {
@@ -146,15 +146,60 @@ body {
 }
 
 .navbar-default{
-    background-color: #66a7a5;
+    background-color: #2c3e50!important;
+    border: none;
+    border-radius: 0px !important;
 
 }
+
+@media (min-width: 768px){
+    .navbar-nav>li>a {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+}
+.navbar-brand{
+    padding: 24px 24px;
+}
+
+
+
 .navbar-default .navbar-brand{
     color: #fff;
 }
 .navbar-default .navbar-nav>li>a{
     color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
 }
+
+.navbar-default .navbar-nav>li>a:hover {
+    background-color: #66a7a5 !important;
+    color: #fff;
+}
+
+.btn{
+    border-radius: 2px;
+    padding: 9px 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.panel-heading h3{
+    margin: 0px;
+}
+
+.nav-tabs>li>a,
+.nav-tabs>li.active>a{
+    text-transform: uppercase !important;
+    font-weight: bold;
+}
+
+.form-control{
+    border-radius: 2px;
+    height: 38px;
+}
+
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a{
     background-color: #86b3b2;

@@ -29,7 +29,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="${pageContext.request.contextPath}/dashboard">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/dashboard">Home <span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/turmas">Turmas</a></li>
                         <li><a href="${pageContext.request.contextPath}/alunos">Alunos</a></li>
                         <li><a href="${pageContext.request.contextPath}/profissionais">Profissionais</a></li>

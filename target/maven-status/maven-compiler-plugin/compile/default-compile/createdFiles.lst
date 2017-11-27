@@ -14,6 +14,7 @@ br/csi/modelo/Atividade.class
 br/csi/dao/TotaisDAO.class
 br/csi/modelo/ProfissionalTurma.class
 br/csi/modelo/Aluno.class
+br/csi/interceptor/AutorizadorInterceptor.class
 br/csi/modelo/Turma.class
 br/csi/dao/AlunoMedicamentoDAO.class
 br/csi/dao/TurmaDAO.class

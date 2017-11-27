@@ -33,9 +33,7 @@ public class UsuarioController {
         try {
             if (dao.autenticado(usuario)) {
 
-//                session.setAttribute("page", "dashboard");
                 session.setAttribute("usuarioLogado", usuario);
-//                model.addAttribute("usuarioLogado", usuario);
                 
                 return "redirect:dashboard";
             } else {

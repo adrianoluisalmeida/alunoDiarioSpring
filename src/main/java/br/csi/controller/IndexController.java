@@ -5,6 +5,7 @@
  */
 package br.csi.controller;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -17,12 +18,11 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class IndexController {
     
-    //@RequestMapping(value = {"", "/"} )
     public String index(){        
-        return "redirect:inicial";
+        return "redirect:login";
     }
     
-    @RequestMapping("home")
+    @RequestMapping("login")
     public String home(){        
         return "index";
     }    
@@ -30,7 +30,15 @@ public class IndexController {
     @RequestMapping(value = {"", "/"} )
     public RedirectView home2(){        
         
-        return new RedirectView("home", true);
+        return new RedirectView("login", true);
     }
+    
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session){
+        session.invalidate(); 
+        return "redirect:login";
+    }
+    
+    
     
 }

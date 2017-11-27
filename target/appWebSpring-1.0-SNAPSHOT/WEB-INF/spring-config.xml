@@ -24,12 +24,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>       
     
+    <mvc:interceptors>
+        <bean class="br.csi.interceptor.AutorizadorInterceptor" />
+    </mvc:interceptors>
+    
     <!--
-    <bean id="mysqlDataSource" class="org.apache.commons">
-    <property name="driverClassName" value="org.postgresql.Driver"/>
-    <property name="url" value="jdbc:postgresql://localhost:5432/poow1"/>
-    <property name="username" value="postgres"/>
-    <property name="password" value="12345"/>
-</bean> -->
+        <bean id="mysqlDataSource" class="org.apache.commons">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/poow1"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="12345"/>
+    </bean> -->
 
 </beans>

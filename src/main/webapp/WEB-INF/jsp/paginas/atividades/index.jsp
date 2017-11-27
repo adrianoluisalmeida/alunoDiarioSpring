@@ -26,7 +26,7 @@
                                 <th>Hora</th>
                                 <th>Turma</th>
                                 <th>Atividade</th>
-                                <th>Ações</th>
+                                <th width="200">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
