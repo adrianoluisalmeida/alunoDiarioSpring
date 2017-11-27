@@ -66,6 +66,7 @@
                 dateFormat: "dd/mm/yyyy"
             });
             $("#data").mask("00/00/0000");
+            $('[name="hora"]').mask('00:00:00');
 
         </script>
 

@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class ProfissionalDAO {
 
@@ -75,7 +74,7 @@ public class ProfissionalDAO {
         if (rs.next()) {
             return rs.getInt(1);
         }
-        
+
         return 0;
 //         productId;
 //        resturn true;
@@ -85,6 +84,33 @@ public class ProfissionalDAO {
         ArrayList<Profissional> profissionais = new ArrayList<>();
 
         String sql = "select * from profissional";
+        PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            Integer id = rs.getInt("id");
+            String nome = rs.getString("nome");
+            String sexo = rs.getString("sexo");
+            String email = rs.getString("email");
+            String funcao = rs.getString("funcao");
+
+            Profissional profissional = new Profissional(id, nome, sexo, email, funcao);
+            profissionais.add(profissional);
+        }
+
+        System.out.println("Metodo executado com sucesso...");
+
+        return profissionais;
+    }
+
+    public ArrayList<Profissional> listarAtividadeProfissionais(Integer atividade_id) throws Exception {
+        ArrayList<Profissional> profissionais = new ArrayList<>();
+
+        String sql = "    select * \n"
+                + "from profissional_turma \n"
+                + "inner join profissional on profissional.id = profissional_turma.profissional_id\n"
+                + "where turma_id in (select turma_id from atividade where id = "+atividade_id+" )";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
 

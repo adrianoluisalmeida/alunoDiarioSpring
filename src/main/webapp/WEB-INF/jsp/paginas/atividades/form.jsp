@@ -9,6 +9,8 @@
     <form:errors path="atividade.descricao" cssStyle="color:red"/>
 </div>
 
+
+
 <div class="form-group">
     <fmt:formatDate value="${atividade.data}"  
                     type="date" 
@@ -21,6 +23,11 @@
     </div>
 
 </div>
+    
+    <div class="form-group">
+        <label for="data">Hora</label>
+        <input type="text" name="hora" value="${atividade.hora}" class="form-control" />
+    </div>
 
 <div class="form-group">
     <label for="turma_id">Turma: </label>

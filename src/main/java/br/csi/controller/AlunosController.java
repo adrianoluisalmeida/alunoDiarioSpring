@@ -68,7 +68,7 @@ public class AlunosController {
 
         aluno.setTurma(new Turma(turma_id));
         aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
-        
+
         if (result.hasErrors()) {
             model.addAttribute("page", "alunos/create");
             return "app";
@@ -97,11 +97,17 @@ public class AlunosController {
     }
 
     @RequestMapping(value = "/alunos/update/{id}", method = POST)
-    public String update(@PathVariable("id") int id, Aluno aluno, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) {
+    public String update(@Valid Aluno aluno, BindingResult result, Model model, @PathVariable("id") int id, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) throws Exception {
 
         aluno.setId(id);
         aluno.setTurma(new Turma(turma_id));
         aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
+
+        if (result.hasErrors()) {
+          
+            return "redirect:/alunos/editar/" + id;
+        }
+
         try {
             dao.atualizar(aluno);
         } catch (Exception ex) {

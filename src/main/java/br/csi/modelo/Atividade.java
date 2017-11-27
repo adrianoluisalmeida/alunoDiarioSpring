@@ -6,6 +6,7 @@
 package br.csi.modelo;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -18,19 +19,20 @@ public class Atividade implements Serializable {
     private String descricao;
     private Date data;
     private Turma turma;
-//    private Time hora;
-//    private String plano_saude;
-//    private String plano_numero;
-//    private String sexo;
-    public Atividade(){
-        
+    private Time hora;
+
+    public Atividade() {
+
     }
-    public Atividade(Integer id, String descricao, Date data, Turma turma){
+
+    public Atividade(Integer id, String descricao, Date data, Turma turma, Time hora) {
         this.id = id;
         this.descricao = descricao;
         this.data = data;
         this.turma = turma;
+        this.hora = hora;
     }
+
     public Integer getId() {
         return id;
     }
@@ -38,7 +40,7 @@ public class Atividade implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getDescricao() {
         return descricao;
     }
@@ -62,6 +64,13 @@ public class Atividade implements Serializable {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
-    
-    
+
+    public Time getHora() {
+        return hora;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+
 }

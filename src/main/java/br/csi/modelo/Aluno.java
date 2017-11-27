@@ -21,6 +21,7 @@ public class Aluno implements Serializable {
     private String sexo;
     private Date nascimento;
     private Turma turma;
+    private Integer medicamentos;
 
 //    public void Aluno(Integer id, String nome, String plano_saude, String plano_numero, String sexo, String nascimento) {
 //        this.id = id;
@@ -115,5 +116,15 @@ public class Aluno implements Serializable {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
+
+    public Integer getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(Integer medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+    
+    
 
 }

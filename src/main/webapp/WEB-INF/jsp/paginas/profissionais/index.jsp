@@ -8,7 +8,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>#</td>
+                    <td width="40">#</td>
                     <td>Nome</td>
                     <td width="200">Ações</td>
                 </tr>
@@ -20,8 +20,8 @@
                         <td>${profissional.id}</td>
                         <td>${profissional.nome}</td>
                         <td>
-                            <a href="profissionais/remove/${profissional.id}" class="btn btn-danger">Remover</a>
-                            <a href="profissionais/editar/${profissional.id}" class="btn btn-primary">Editar</a>
+                            <a href="profissionais/remove/${profissional.id}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="profissionais/editar/${profissional.id}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                         </td>
                     </tr>
                 </c:forEach>

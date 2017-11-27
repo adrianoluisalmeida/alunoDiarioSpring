@@ -11,6 +11,7 @@ br/csi/dao/ProfissionalTurmaDAO.class
 br/csi/dao/AlunoDAO.class
 br/csi/controller/PrimeiroControlador.class
 br/csi/modelo/Atividade.class
+br/csi/dao/TotaisDAO.class
 br/csi/modelo/ProfissionalTurma.class
 br/csi/modelo/Aluno.class
 br/csi/modelo/Turma.class
@@ -20,6 +21,7 @@ br/csi/modelo/AlunoMedicamento.class
 br/csi/dao/ProfissionalDAO.class
 br/csi/util/ConectaPostgres.class
 br/csi/controller/AlunosController.class
+br/csi/modelo/Totais.class
 br/csi/util/DateUtils.class
 br/csi/dao/AtividadeDAO.class
 br/csi/controller/AtividadesController.class

@@ -109,4 +109,39 @@ public class AlunoDAO {
         return alunos;
     }
 
+    public ArrayList<Aluno> listarAlunosAtividades(Integer atividade_id) throws Exception {
+        ArrayList<Aluno> alunosAtividades = new ArrayList<>();
+
+        String sql = "select *, (select count(*) from aluno_medicamento where aluno_medicamento.aluno_id  = aluno.id group by aluno_id)  as count_medicamentos\n"
+                + "from aluno\n"
+                + "where turma_id IN (select turma_id from atividade where atividade.id = " + atividade_id + ");";
+
+        PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            Integer id = rs.getInt("id");
+            String nome = rs.getString("nome");
+            String plano_saude = rs.getString("plano_saude");
+            String plano_numero = rs.getString("plano_numero");
+            String sexo = rs.getString("plano_numero");
+            Date nascimento = rs.getDate("nascimento");
+
+            
+            
+            Aluno aluno = new Aluno(id, nome, plano_saude, plano_numero, sexo, nascimento);
+            if(rs.getString("count_medicamentos") == null){
+                aluno.setMedicamentos(0);
+            }else{
+                 aluno.setMedicamentos(Integer.parseInt(rs.getString("count_medicamentos")));
+            }
+            alunosAtividades.add(aluno);
+        }
+
+        System.out.println("Metodo executado com sucesso...");
+
+        return alunosAtividades;
+    }
+
 }
