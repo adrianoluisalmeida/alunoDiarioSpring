@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,6 +54,10 @@
         </nav>
 
         <div class="container">
+            <c:if test = "${ fn:length(msg) gt 0 }">
+                <br/>
+                <div id="msg-returns" class="alert alert-success">${msg}</div> 
+            </c:if>
             <jsp:include page="paginas/${page}.jsp" flush="true" />
         </div>
 
@@ -61,6 +68,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
         <script src="${pageContext.request.contextPath}/recursos/js/jquery.mask.js"></script>
         <script type="text/javascript">
+
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('#msg-returns').hide();
+                }, 5000);
+            });
+
+
             $("#data").datepicker({
                 minDate: 0,
                 dateFormat: "dd/mm/yyyy"

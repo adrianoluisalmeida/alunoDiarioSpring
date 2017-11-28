@@ -32,8 +32,6 @@
                         <tbody>
 
                             <c:forEach var="atividade" items="${atividades}">
-                                <!-- Single event in a single day -->
-
                                 <tr>
                                     <td class="agenda-date" class="active" rowspan="1">
                                         <div class="dayofmonth">
@@ -61,6 +59,7 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                                
                         </tbody>
                     </table>
                 </div>

@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
 <div class="form-group">
     <label for="nome">Aluno: </label>
     <input name="nome" value="${aluno.nome}" type="text" class="form-control" />

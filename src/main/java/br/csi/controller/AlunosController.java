@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import java.util.Date;
 import br.csi.util.DateUtils;
 import java.util.Date;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -34,7 +36,7 @@ public class AlunosController {
     private AlunoDAO dao;
 
     @RequestMapping("/alunos")
-    public String index(Model model) {
+    public String index(@ModelAttribute("msg") String msg, Model model) {
         try {
             model.addAttribute("alunos", dao.listar());
         } catch (Exception ex) {
@@ -49,7 +51,7 @@ public class AlunosController {
     private TurmaDAO daoTurma;
 
     @RequestMapping(value = "/alunos/criar", method = GET)
-    public String create(Model model) {
+    public String create(@ModelAttribute("aluno") Aluno aluno, Model model) {
         try {
             model.addAttribute("turmas", daoTurma.listar());
         } catch (Exception ex) {
@@ -64,18 +66,24 @@ public class AlunosController {
     private AlunoMedicamentoDAO mdao;
 
     @RequestMapping(value = "/alunos/store", method = POST)
-    public String store(@Valid Aluno aluno, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) {
+    public String store(@Valid Aluno aluno, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento, final RedirectAttributes redirectAttributes) {
 
         aluno.setTurma(new Turma(turma_id));
         aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
 
         if (result.hasErrors()) {
-            model.addAttribute("page", "alunos/create");
-            return "app";
+            try {
+                model.addAttribute("turmas", daoTurma.listar());
+                model.addAttribute("page", "alunos/create");
+                return "app";
+            } catch (Exception ex) {
+                Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         try {
             Integer aluno_id = dao.inserir(aluno);
+            redirectAttributes.addFlashAttribute("msg", "Aluno cadastrado com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,19 +105,19 @@ public class AlunosController {
     }
 
     @RequestMapping(value = "/alunos/update/{id}", method = POST)
-    public String update(@Valid Aluno aluno, BindingResult result, Model model, @PathVariable("id") int id, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento) throws Exception {
+    public String update(@Valid Aluno aluno, BindingResult result, Model model, @PathVariable("id") int id, @RequestParam("turma_id") int turma_id, @RequestParam("nascimento") String nascimento, final RedirectAttributes redirectAttributes) throws Exception {
 
         aluno.setId(id);
         aluno.setTurma(new Turma(turma_id));
         aluno.setNascimento(DateUtils.toDate(nascimento, "dd/MM/yyyy"));
 
         if (result.hasErrors()) {
-          
             return "redirect:/alunos/editar/" + id;
         }
 
         try {
             dao.atualizar(aluno);
+            redirectAttributes.addFlashAttribute("msg", "Aluno atualizado com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,10 +126,11 @@ public class AlunosController {
     }
 
     @RequestMapping(value = "/alunos/remove/{id}", method = GET)
-    public String remove(@PathVariable("id") int id, Aluno aluno) {
+    public String remove(@PathVariable("id") int id, Aluno aluno, final RedirectAttributes redirectAttributes) {
         aluno.setId(id);
         try {
             dao.deletar(aluno);
+            redirectAttributes.addFlashAttribute("msg", "Aluno removido com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
         }
