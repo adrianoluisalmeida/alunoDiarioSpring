@@ -2,42 +2,14 @@ package br.csi.dao;
 
 import br.csi.modelo.Aluno;
 import br.csi.modelo.AlunoMedicamento;
-import br.csi.modelo.Turma;
 import br.csi.util.ConectaPostgres;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
-/*
-
-create table usuario(
-login varchar(50),
-senha varchar(50) not null,
-primary key (login)
-)
-
- */
 @Component
 public class AlunoMedicamentoDAO {
-
-    public boolean atualizar(AlunoMedicamento a) throws Exception {
-        String sql = "update aluno_medicamento set nome=?, descricao=?, aluno_id=? "
-                + "where id = ?";
-        PreparedStatement stmt
-                = ConectaPostgres.getConexao()
-                        .prepareStatement(sql);
-
-        stmt.setString(1, a.getNome());
-        stmt.setString(2, a.getDescricao());
-        stmt.setInt(3, a.getAluno().getId());
-        stmt.setInt(4, a.getId());
-
-        stmt.executeUpdate();
-        return true;
-    }
 
     public AlunoMedicamento get(Integer id) throws Exception {
         String sql = "select * from aluno_medicamento where id =?";

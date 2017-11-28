@@ -87,7 +87,7 @@ public class AlunoDAO {
     public ArrayList<Aluno> listar() throws Exception {
         ArrayList<Aluno> alunos = new ArrayList<>();
 
-        String sql = "select * from aluno";
+        String sql = "select * from aluno order by id desc";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
 

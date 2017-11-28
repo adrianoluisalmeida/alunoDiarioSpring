@@ -8,6 +8,8 @@ package br.csi.modelo;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -16,6 +18,8 @@ import java.util.Date;
 public class Atividade implements Serializable {
 
     private Integer id;
+    @NotNull(message = "O campo descrição deve ser preenchido")
+    @Size(min = 5, message = "Descrição deve ter pelo menos 5 carateres")
     private String descricao;
     private Date data;
     private Turma turma;

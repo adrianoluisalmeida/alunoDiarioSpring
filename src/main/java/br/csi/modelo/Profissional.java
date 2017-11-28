@@ -1,6 +1,7 @@
 package br.csi.modelo;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -9,9 +10,13 @@ import java.io.Serializable;
 public class Profissional implements Serializable {
 
     private Integer id;
+    @NotNull(message = "O campo nome deve ser preenchido")
     private String nome;
+    @NotNull(message = "O sexo deve ser preenchido")
     private String sexo;
+    @NotNull(message = "O email deve ser preenchido")
     private String email;
+    @NotNull(message = "O funcao deve ser preenchido")
     private String funcao;
 
     public Profissional() {

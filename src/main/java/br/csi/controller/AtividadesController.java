@@ -22,6 +22,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
 import br.csi.util.DateUtils;
 import java.sql.Time;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -32,13 +33,13 @@ public class AtividadesController {
 
     @Autowired
     private AtividadeDAO dao;
-    
+
     @Autowired
     private AlunoDAO adao;
-    
+
     @Autowired
     private TotaisDAO tdao;
-    
+
     @Autowired
     private ProfissionalDAO pdao;
 
@@ -46,7 +47,7 @@ public class AtividadesController {
     public String index(Model model) {
         try {
             model.addAttribute("atividades", dao.listar());
-            
+
         } catch (Exception ex) {
             Logger.getLogger(AtividadesController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,12 +64,11 @@ public class AtividadesController {
             model.addAttribute("alunos", adao.listarAlunosAtividades(id));
             model.addAttribute("totais", tdao.get(id));
             model.addAttribute("profissionais", pdao.listarAtividadeProfissionais(id));
-            
-//            model.addAttribute("totaisOk");
+
         } catch (Exception ex) {
             Logger.getLogger(AtividadesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         model.addAttribute("page", "atividades/show");
         return "app";
     }
@@ -89,13 +89,24 @@ public class AtividadesController {
     }
 
     @RequestMapping(value = "/atividades/store", method = POST)
-    public String store(Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("data") String data) {
+    public String store(@Valid Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("data") String data, final RedirectAttributes redirectAttributes) {
 
         atividade.setTurma(new Turma(turma_id));
         atividade.setData(DateUtils.toDate(data, "dd/MM/yyyy"));
 
+        if (result.hasErrors()) {
+            try {
+                model.addAttribute("turmas", daoTurma.listar());
+                model.addAttribute("page", "atividades/create");
+                return "app";
+            } catch (Exception ex) {
+                Logger.getLogger(AlunosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
         try {
             Integer atividade_id = dao.inserir(atividade);
+            redirectAttributes.addFlashAttribute("msg", "Atividade adicionada com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(AtividadesController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,7 +128,7 @@ public class AtividadesController {
     }
 
     @RequestMapping(value = "/atividades/update/{id}")
-    public String update(@PathVariable("id") int id, Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("data") String data, @RequestParam("hora") Time hora) {
+    public String update(@PathVariable("id") int id, @Valid Atividade atividade, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turma_id") int turma_id, @RequestParam("data") String data, @RequestParam("hora") Time hora, final RedirectAttributes redirectAttributes) {
 
         atividade.setId(id);
         atividade.setTurma(new Turma(turma_id));
@@ -126,6 +137,7 @@ public class AtividadesController {
 
         try {
             dao.atualizar(atividade);
+            redirectAttributes.addFlashAttribute("msg", "Atividade atualizada com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(AtividadesController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,10 +146,11 @@ public class AtividadesController {
     }
 
     @RequestMapping(value = "/atividades/remove/{id}", method = GET)
-    public String remove(@PathVariable("id") int id, Atividade atividade) {
+    public String remove(@PathVariable("id") int id, Atividade atividade, final RedirectAttributes redirectAttributes) {
         atividade.setId(id);
         try {
             dao.deletar(atividade);
+            redirectAttributes.addFlashAttribute("msg", "Atividade removida com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(AtividadesController.class.getName()).log(Level.SEVERE, null, ex);
         }

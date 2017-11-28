@@ -18,7 +18,9 @@ public class Aluno implements Serializable {
     private String nome;
     private String plano_saude;
     private String plano_numero;
+    @NotNull(message = "O sexo deve ser preenchido")
     private String sexo;
+    @NotNull(message = "O nascimento deve ser preenchido")
     private Date nascimento;
     private Turma turma;
     private Integer medicamentos;
@@ -58,7 +60,7 @@ public class Aluno implements Serializable {
     }
 
     public Aluno(int id) {
-       this.id = id;
+        this.id = id;
     }
 
     public Integer getId() {
@@ -124,7 +126,5 @@ public class Aluno implements Serializable {
     public void setMedicamentos(Integer medicamentos) {
         this.medicamentos = medicamentos;
     }
-    
-    
 
 }

@@ -78,7 +78,7 @@ public class TurmaDAO {
             
              // carregar o driver           
             // criar a declaracao (statement) sql
-            String sql = "select * from turma";
+            String sql = "select * from turma  order by id desc";
             PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
             // executar instrucao sql
             ResultSet rs = stmt.executeQuery();

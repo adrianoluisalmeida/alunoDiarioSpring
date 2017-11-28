@@ -5,7 +5,6 @@ import br.csi.dao.AlunoMedicamentoDAO;
 import br.csi.dao.TurmaDAO;
 import br.csi.modelo.Aluno;
 import br.csi.modelo.Turma;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
-//import java.util.Date;
 import br.csi.util.DateUtils;
-import java.util.Date;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 

@@ -15,11 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -32,7 +34,7 @@ public class ProfissionalController {
     private ProfissionalDAO dao;
 
     @RequestMapping("/profissionais")
-    public String index(Model model) {
+    public String index(@ModelAttribute("msg") String msg, Model model) {
         try {
             model.addAttribute("profissionais", dao.listar());
         } catch (Exception ex) {
@@ -50,6 +52,7 @@ public class ProfissionalController {
     public String create(Model model) {
         try {
             model.addAttribute("turmas", daoTurma.listar());
+
         } catch (Exception ex) {
             Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,9 +65,8 @@ public class ProfissionalController {
     private ProfissionalTurmaDAO daoProfTurma;
 
     @RequestMapping(value = "/profissionais/store", method = POST)
-    public String store(@Valid Profissional profissional, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turmas") ArrayList<Integer> turmas) {
+    public String store(@Valid Profissional profissional, BindingResult result, Model model, HttpServletRequest request, @RequestParam("turmas") ArrayList<Integer> turmas, final RedirectAttributes redirectAttributes) {
 
-//        aluno.setTurma(new Turma(turma_id));
         if (result.hasErrors()) {
             model.addAttribute("page", "profissionais/create");
             return "app";
@@ -72,8 +74,6 @@ public class ProfissionalController {
 
         try {
             Integer insert_id = dao.inserir(profissional);
-
-            System.out.println("INSERT ID: " + insert_id);
 
             //INSERE AS TURMAS QUE O PROFISSIONAL É RESPONSAVEL
             for (Integer integer : turmas) {
@@ -84,6 +84,7 @@ public class ProfissionalController {
 
                 try {
                     daoProfTurma.inserir(pProfissionalTurma);
+
                 } catch (Exception ex) {
                     Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -93,6 +94,7 @@ public class ProfissionalController {
             Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        redirectAttributes.addFlashAttribute("msg", "Profissional cadastrado com sucesso !");
         return "redirect:/profissionais";
     }
 
@@ -110,7 +112,7 @@ public class ProfissionalController {
     }
 
     @RequestMapping(value = "/profissionais/update/{id}", method = POST)
-    public String update(@PathVariable("id") int id, Profissional profissional, @RequestParam("turmas") ArrayList<Integer> turmas) {
+    public String update(@PathVariable("id") int id, Profissional profissional, @RequestParam("turmas") ArrayList<Integer> turmas, final RedirectAttributes redirectAttributes) {
 
         profissional.setId(id);
 
@@ -139,6 +141,8 @@ public class ProfissionalController {
 
         try {
             dao.atualizar(profissional);
+            redirectAttributes.addFlashAttribute("msg", "Profissional atualizado com sucesso !");
+
         } catch (Exception ex) {
             Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,10 +156,11 @@ public class ProfissionalController {
      *
      * @param id
      * @param profissional
+     * @param redirectAttributes
      * @return
      */
     @RequestMapping(value = "/profissionais/remove/{id}", method = GET)
-    public String remove(@PathVariable("id") int id, Profissional profissional) {
+    public String remove(@PathVariable("id") int id, Profissional profissional, final RedirectAttributes redirectAttributes) {
 
         profissional.setId(id);
 
@@ -169,6 +174,7 @@ public class ProfissionalController {
 
         try {
             dao.deletar(profissional);
+            redirectAttributes.addFlashAttribute("msg", "Profissional removido com sucesso !");
         } catch (Exception ex) {
             Logger.getLogger(ProfissionalController.class.getName()).log(Level.SEVERE, null, ex);
         }

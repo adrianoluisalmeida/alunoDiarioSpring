@@ -24,8 +24,8 @@
 <div class="form-group">
     <label for="sexo">Sexo: </label>
     <select class="form-control" name="sexo">
-        <option value="m">Masculina</option>
-        <option value="f">Feminio</option>
+        <option value="m">Masculino</option>
+        <option value="f">Feminino</option>
     </select>
     <form:errors path="aluno.plano_numero" cssStyle="color:red"/>
 </div>

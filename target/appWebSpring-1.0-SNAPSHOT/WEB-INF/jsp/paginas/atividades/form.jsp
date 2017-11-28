@@ -10,8 +10,6 @@
     <form:errors path="atividade.descricao" cssStyle="color:red"/>
 </div>
 
-
-
 <div class="form-group">
     <fmt:formatDate value="${atividade.data}"  
                     type="date" 
@@ -22,13 +20,12 @@
         <label for="data">Data da Atividade</label>
         <input type="text" data-date-format="dd/mm/yyyy" id="data" value="${theFormattedDate}" name="data" placeholder="Escolha uma data" class="form-control" required />
     </div>
-
 </div>
-    
-    <div class="form-group">
-        <label for="data">Hora</label>
-        <input type="text" name="hora" value="${atividade.hora}" class="form-control" />
-    </div>
+
+<div class="form-group">
+    <label for="data">Hora</label>
+    <input type="text" name="hora" value="${atividade.hora}" class="form-control" required />
+</div>
 
 <div class="form-group">
     <label for="turma_id">Turma: </label>

@@ -70,4 +70,21 @@ public class MedicamentosController {
 
     }
 
+    @RequestMapping(value = "medicamento/remove/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public boolean destroy(@Valid AlunoMedicamento aluno, BindingResult result, Model model, HttpServletRequest request, @PathVariable("id") int id) {
+
+        aluno.setId(id);
+        try {
+            mdao.deletar(aluno);
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(MedicamentosController.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+        return false;
+
+    }
+
 }
