@@ -22,7 +22,11 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-
+                    <c:if test="${not empty msg}">    
+                        <div class="alert alert-danger">
+                            ${msg}
+                        </div>
+                    </c:if>
                     <br />
                     <form action="usuarioLogar" method="POST">
                         <div class="form-group">
@@ -42,12 +46,6 @@
                 </div>
             </div>                
         </div>
-
-        <c:if test="${not empty msg}">           
-            <div class="alert alert-danger" role="alert">
-                <h2>Usuário ou Senha incorretos</h2>
-            </div>            
-        </c:if>
 
     </body>
 </html>

@@ -17,14 +17,16 @@
                     var="theFormattedDate" />
 
     <div class="form-group">
-        <label for="data">Data da Atividade</label>
+        <label for="data">Data da AtivFidade</label>
         <input type="text" data-date-format="dd/mm/yyyy" id="data" value="${theFormattedDate}" name="data" placeholder="Escolha uma data" class="form-control" required />
+          <form:errors path="atividade.data" cssStyle="color:red"/>
     </div>
 </div>
 
 <div class="form-group">
     <label for="data">Hora</label>
     <input type="text" name="hora" value="${atividade.hora}" class="form-control" required />
+    <form:errors path="atividade.hora" cssStyle="color:red"/>
 </div>
 
 <div class="form-group">

@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.csi.controller;
-
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -18,7 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class IndexController {
 
     public String index() {
-        return "redirect:login";
+        return "redirect:home";
     }
 
     @RequestMapping("login")
@@ -26,7 +19,12 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = {"", "/"})
+    @RequestMapping("cadastrar")
+    public String cadatrar() {
+        return "cadastrar";
+    }
+
+    @RequestMapping(value = {"/home", "/"})
     public String homeSite() {
         return "site";
     }
