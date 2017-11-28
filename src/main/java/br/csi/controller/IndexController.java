@@ -14,31 +14,32 @@ import org.springframework.web.servlet.view.RedirectView;
  *
  * @author aluno
  */
-
 @Controller
 public class IndexController {
-    
-    public String index(){        
+
+    public String index() {
         return "redirect:login";
     }
-    
+
     @RequestMapping("login")
-    public String home(){        
+    public String home() {
         return "index";
-    }    
-    
-    @RequestMapping(value = {"", "/"} )
-    public RedirectView home2(){        
-        
-        return new RedirectView("login", true);
     }
-    
+
+    @RequestMapping(value = {"", "/"})
+    public String homeSite() {
+        return "site";
+    }
+
+    @RequestMapping(value = {"/about"})
+    public String about() {
+        return "about";
+    }
+
     @RequestMapping(value = "/logout")
-    public String logout(HttpSession session){
-        session.invalidate(); 
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:login";
     }
-    
-    
-    
+
 }

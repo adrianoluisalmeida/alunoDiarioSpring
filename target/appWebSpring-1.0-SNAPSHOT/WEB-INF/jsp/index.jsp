@@ -32,9 +32,10 @@
 
                         <div class="form-group">
                             <label for="senha">SENHA:</label>
-                            <input type="text" class="form-control" name="senha" />
+                            <input type="password" class="form-control" name="senha" />
                         </div>
 
+                        <a href="cadastrar" class="btn btn-default pull-left" >CADASTRAR</a>		
                         <button class="btn btn-primary pull-right" type="submit">LOGAR</button>		
                     </form>
 
