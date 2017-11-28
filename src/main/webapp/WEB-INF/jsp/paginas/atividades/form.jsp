@@ -17,7 +17,7 @@
                     var="theFormattedDate" />
 
     <div class="form-group">
-        <label for="data">Data da AtivFidade</label>
+        <label for="data">Data da Atividade</label>
         <input type="text" data-date-format="dd/mm/yyyy" id="data" value="${theFormattedDate}" name="data" placeholder="Escolha uma data" class="form-control" required />
           <form:errors path="atividade.data" cssStyle="color:red"/>
     </div>

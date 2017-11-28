@@ -5,6 +5,7 @@
  */
 package br.csi.modelo;
 
+import br.csi.util.Registro;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
@@ -15,7 +16,7 @@ import javax.validation.constraints.Size;
  *
  * @author adriano
  */
-public class Atividade implements Serializable {
+public class Atividade extends Registro implements Serializable {
 
     private Integer id;
     @NotNull(message = "O campo descrição deve ser preenchido")

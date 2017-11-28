@@ -4,13 +4,13 @@ import br.csi.modelo.Profissional;
 import br.csi.util.ConectaPostgres;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProfissionalDAO {
+public class ProfissionalDAO implements DAO<Profissional> {
 
+    @Override
     public boolean atualizar(Profissional p) throws Exception {
         String sql = "update profissional set nome=?, sexo=?, email=?, funcao=?"
                 + "where id = ?";
@@ -28,6 +28,7 @@ public class ProfissionalDAO {
         return true;
     }
 
+    @Override
     public Profissional get(Integer id) throws Exception {
         String sql = "select * from profissional where id =?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareCall(sql);
@@ -43,6 +44,7 @@ public class ProfissionalDAO {
         return a;
     }
 
+    @Override
     public boolean deletar(Profissional profissional) throws Exception {
 
         String sql = "DELETE from profissional where id =?";
@@ -54,6 +56,7 @@ public class ProfissionalDAO {
         return true;
     }
 
+    @Override
     public Integer inserir(Profissional profissional) throws Exception {
         String sql = "insert into profissional(nome, sexo, email, funcao) "
                 + "values(?, ?, ?, ?)";
@@ -66,20 +69,17 @@ public class ProfissionalDAO {
         stmt.setString(3, profissional.getEmail());
         stmt.setString(4, profissional.getFuncao());
 
-//        System.out.println("nome: + profissional.getNome() + "plano saude:" + profissional.getPlano_saude());
         stmt.executeUpdate();
 
-        // now get the ID:
         ResultSet rs = stmt.getGeneratedKeys();
         if (rs.next()) {
             return rs.getInt(1);
         }
 
         return 0;
-//         productId;
-//        resturn true;
     }
 
+    @Override
     public ArrayList<Profissional> listar() throws Exception {
         ArrayList<Profissional> profissionais = new ArrayList<>();
 
@@ -98,8 +98,6 @@ public class ProfissionalDAO {
             Profissional profissional = new Profissional(id, nome, sexo, email, funcao);
             profissionais.add(profissional);
         }
-
-        System.out.println("Metodo executado com sucesso...");
 
         return profissionais;
     }
@@ -125,8 +123,6 @@ public class ProfissionalDAO {
             Profissional profissional = new Profissional(id, nome, sexo, email, funcao);
             profissionais.add(profissional);
         }
-
-        System.out.println("Metodo executado com sucesso...");
 
         return profissionais;
     }

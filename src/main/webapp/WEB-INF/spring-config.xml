@@ -27,6 +27,7 @@
     <mvc:interceptors>
         <bean class="br.csi.interceptor.AutorizadorInterceptor" />
     </mvc:interceptors>
+    
     <context:component-scan base-package="br.csi.controller" />
     <mvc:annotation-driven />
     <!--

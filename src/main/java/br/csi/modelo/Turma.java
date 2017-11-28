@@ -1,5 +1,6 @@
 package br.csi.modelo;
 
+import br.csi.util.Registro;
 import java.io.Serializable;
 //import static javax.swing.text.StyleConstants.Size;
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import javax.validation.constraints.Size;
  *
  * @author adriano
  */
-public class Turma implements Serializable {
+public class Turma extends Registro implements Serializable {
 
     private Integer id;
     

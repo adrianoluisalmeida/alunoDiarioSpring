@@ -1,5 +1,6 @@
 package br.csi.modelo;
 
+import br.csi.util.Registro;
 import java.io.Serializable;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import javax.validation.constraints.Size;
  *
  * @author adriano
  */
-public class Aluno implements Serializable {
+public class Aluno extends Registro implements Serializable {
 
     private Integer id;
 
@@ -25,17 +26,6 @@ public class Aluno implements Serializable {
     private Turma turma;
     private Integer medicamentos;
 
-//    public void Aluno(Integer id, String nome, String plano_saude, String plano_numero, String sexo, String nascimento) {
-//        this.id = id;
-//        this.nome = nome;
-//        this.plano_saude = plano_saude;
-//        this.plano_numero = plano_numero;
-//        this.sexo = sexo;
-//        this.nascimento = nascimento;
-//    }
-//    public Aluno(Integer id, String nome, String plano_saude, String plano_numero, String sexo) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     public Aluno(Integer id, String nome, String plano_saude, String plano_numero, String sexo, Date nascimento) {
         this.id = id;
         this.nome = nome;

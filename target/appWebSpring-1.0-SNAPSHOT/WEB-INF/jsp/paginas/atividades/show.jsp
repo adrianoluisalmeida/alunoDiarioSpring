@@ -48,7 +48,6 @@
             <div class="col-md-6 no-padding">
                 <span class="label label-success">OK <span class="badge text-success">${totais.ok}</span></span>
                 <span class="label label-warning">MEDICAMENTOS <span class="badge text-warning">${totais.medicamentos}</span></span>
-                <!--<span class="label label-danger">RESTRIÇÕES <span class="badge text-danger">1</span></span>-->
             </div>
 
             <div class="clearfix"></div>

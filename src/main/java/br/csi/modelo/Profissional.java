@@ -1,5 +1,6 @@
 package br.csi.modelo;
 
+import br.csi.util.Registro;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
@@ -7,7 +8,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author adriano
  */
-public class Profissional implements Serializable {
+public class Profissional extends Registro implements Serializable {
 
     private Integer id;
     @NotNull(message = "O campo nome deve ser preenchido")

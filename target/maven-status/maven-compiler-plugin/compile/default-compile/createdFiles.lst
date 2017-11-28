@@ -6,6 +6,7 @@ br/csi/controller/UsuarioController.class
 br/csi/controller/IndexController.class
 br/csi/controller/ProfissionalController.class
 br/csi/modelo/Profissional.class
+br/csi/dao/DAO.class
 br/csi/controller/TurmasController.class
 br/csi/dao/ProfissionalTurmaDAO.class
 br/csi/dao/AlunoDAO.class
@@ -15,6 +16,7 @@ br/csi/dao/TotaisDAO.class
 br/csi/modelo/ProfissionalTurma.class
 br/csi/modelo/Aluno.class
 br/csi/interceptor/AutorizadorInterceptor.class
+br/csi/util/Registro.class
 br/csi/modelo/Turma.class
 br/csi/dao/AlunoMedicamentoDAO.class
 br/csi/dao/TurmaDAO.class

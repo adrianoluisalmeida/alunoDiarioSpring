@@ -62,10 +62,11 @@ public class TotaisDAO {
         ResultSet rs = stmt.executeQuery();
         Totais t = new Totais();
 
-        while (rs.next()) {
+        System.out.println("medicamentos: "+this.getMedicamentos(id));
+//        while (rs.next()) {
             t.setMedicamentos(this.getMedicamentos(id));
             t.setOk(this.getOk(id));
-        }
+//        }
         return t;
     }
 }

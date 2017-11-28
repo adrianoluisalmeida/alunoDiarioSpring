@@ -1,10 +1,11 @@
 package br.csi.modelo;
 
+import br.csi.util.Registro;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class Usuario implements Serializable {
+public class Usuario extends Registro implements Serializable  {
 
     @NotNull(message = "O campo login deve ser preenchido")
     @Size(min = 4, message = "Login deve ter pelo menos 4 carateres")

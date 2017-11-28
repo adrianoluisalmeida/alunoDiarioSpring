@@ -6,13 +6,13 @@ import br.csi.util.ConectaPostgres;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
-import java.sql.Statement;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AlunoDAO {
+public class AlunoDAO implements DAO<Aluno> {
 
+    @Override
     public boolean atualizar(Aluno a) throws Exception {
         String sql = "update aluno set nome=?, plano_saude=?, plano_numero=?, sexo=?, nascimento=?, turma_id=? "
                 + "where id = ?";
@@ -32,6 +32,7 @@ public class AlunoDAO {
         return true;
     }
 
+    @Override
     public Aluno get(Integer id) throws Exception {
         String sql = "select * from aluno where id =?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareCall(sql);
@@ -49,6 +50,7 @@ public class AlunoDAO {
         return a;
     }
 
+    @Override
     public boolean deletar(Aluno aluno) throws Exception {
 
         String sql = "DELETE from aluno where id =?";
@@ -60,6 +62,7 @@ public class AlunoDAO {
         return true;
     }
 
+    @Override
     public Integer inserir(Aluno aluno) throws Exception {
         String sql = "insert into aluno(nome, plano_saude, plano_numero, sexo, nascimento, turma_id) "
                 + "values(?, ?, ?, ?, ?, ?)";
@@ -84,6 +87,7 @@ public class AlunoDAO {
         return 0;
     }
 
+    @Override
     public ArrayList<Aluno> listar() throws Exception {
         ArrayList<Aluno> alunos = new ArrayList<>();
 
@@ -103,8 +107,6 @@ public class AlunoDAO {
             Aluno aluno = new Aluno(id, nome, plano_saude, plano_numero, sexo, nascimento);
             alunos.add(aluno);
         }
-
-        System.out.println("Metodo executado com sucesso...");
 
         return alunos;
     }
@@ -128,18 +130,14 @@ public class AlunoDAO {
             String sexo = rs.getString("plano_numero");
             Date nascimento = rs.getDate("nascimento");
 
-            
-            
             Aluno aluno = new Aluno(id, nome, plano_saude, plano_numero, sexo, nascimento);
-            if(rs.getString("count_medicamentos") == null){
+            if (rs.getString("count_medicamentos") == null) {
                 aluno.setMedicamentos(0);
-            }else{
-                 aluno.setMedicamentos(Integer.parseInt(rs.getString("count_medicamentos")));
+            } else {
+                aluno.setMedicamentos(Integer.parseInt(rs.getString("count_medicamentos")));
             }
             alunosAtividades.add(aluno);
         }
-
-        System.out.println("Metodo executado com sucesso...");
 
         return alunosAtividades;
     }

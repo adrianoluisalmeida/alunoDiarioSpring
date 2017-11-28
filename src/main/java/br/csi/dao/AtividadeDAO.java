@@ -7,14 +7,14 @@ import br.csi.util.ConectaPostgres;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AtividadeDAO {
+public class AtividadeDAO implements DAO<Atividade> {
 
+    @Override
     public boolean atualizar(Atividade a) throws Exception {
         String sql = "update atividade set descricao=?, data=?, turma_id=?, hora=? "
                 + "where id = ?";
@@ -34,6 +34,7 @@ public class AtividadeDAO {
         return true;
     }
 
+    @Override
     public Atividade get(Integer id) throws Exception {
         String sql = "select atividade.*, turma.nome as turma_nome from atividade inner join turma on turma.id = atividade.turma_id where atividade.id =?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareCall(sql);
@@ -50,6 +51,7 @@ public class AtividadeDAO {
         return a;
     }
 
+    @Override
     public boolean deletar(Atividade atividade) throws Exception {
 
         String sql = "DELETE from atividade where id =?";
@@ -60,7 +62,8 @@ public class AtividadeDAO {
         stmt.executeUpdate();
         return true;
     }
-
+    
+    @Override
     public Integer inserir(Atividade atividade) throws Exception {
         String sql = "insert into atividade(descricao, data, turma_id, hora) "
                 + "values(?, ?, ?, ?)";
@@ -83,6 +86,7 @@ public class AtividadeDAO {
         return 0;
     }
 
+    @Override
     public ArrayList<Atividade> listar() throws Exception {
         ArrayList<Atividade> atividades = new ArrayList<>();
 

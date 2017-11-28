@@ -5,13 +5,14 @@
  */
 package br.csi.modelo;
 
+import br.csi.util.Registro;
 import java.io.Serializable;
 
 /**
  *
  * @author adriano
  */
-public class ProfissionalTurma implements Serializable {
+public class ProfissionalTurma extends Registro implements Serializable {
 
     private Turma turma;
     private Profissional profissional;
