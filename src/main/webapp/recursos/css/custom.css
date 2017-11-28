@@ -48,6 +48,10 @@ body {
     text-align: right;
 }
 
+.table-striped thead tr td{
+    font-weight: bold !important;
+}
+
 .no-padding{
     padding: 0px;
 }

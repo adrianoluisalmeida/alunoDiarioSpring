@@ -31,11 +31,17 @@
 </div>
 
 
+
 <div class="form-group">
     <label for="turma_id">Turma: </label>
     <select class="form-control" name="turma_id">
         <c:forEach var="turma" items="${turmas}">
-            <option value="${turma.id}">${turma.nome}</option>
+            <c:if test="${aluno.turma.id == turma.id}">         
+                <option value="${turma.id}" selected="">${turma.nome}</option>
+            </c:if>
+            <c:if test="${aluno.turma.id != turma.id}">         
+                <option value="${turma.id}">${turma.nome}</option>
+            </c:if>
         </c:forEach>
     </select>
     <form:errors path="aluno.plano_numero" cssStyle="color:red"/>
@@ -46,12 +52,12 @@
                     type="date" 
                     pattern="dd/MM/yyyy"
                     var="theFormattedDate" />
-    
+
     <div class="form-group">
         <label for="nascimento">Data de Nascimento</label>
         <input type="text" data-date-format="dd/mm/yyyy" id="data" value="${theFormattedDate}" name="nascimento" placeholder="Escolha uma data" class="form-control" required />
     </div>
-    
+
 </div>
 
 <button type="submit" class="btn btn-primary pull-right">Salvar</button>

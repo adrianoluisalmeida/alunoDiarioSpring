@@ -97,7 +97,7 @@ public class AlunoDAO {
             String nome = rs.getString("nome");
             String plano_saude = rs.getString("plano_saude");
             String plano_numero = rs.getString("plano_numero");
-            String sexo = rs.getString("plano_numero");
+            String sexo = rs.getString("sexo");
             Date nascimento = rs.getDate("nascimento");
 
             Aluno aluno = new Aluno(id, nome, plano_saude, plano_numero, sexo, nascimento);

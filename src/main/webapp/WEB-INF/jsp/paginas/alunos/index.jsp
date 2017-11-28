@@ -10,6 +10,9 @@
                 <tr>
                     <td width="40">#</td>
                     <td>Nome</td>
+                    <td>Sexo</td>
+                    <td>Plano Saúde</td>
+                    <td>Plano Número</td>
                     <td width="300">Ações</td>
                 </tr>
             </thead>
@@ -66,6 +69,14 @@
                 <tr>
                     <td>${aluno.id}</td>
                     <td>${aluno.nome}</td>
+                    <td>${aluno.plano_saude}</td>
+                    <td>${aluno.plano_numero}</td>
+                    <c:if test="${aluno.sexo eq 'm'}">         
+                        <td>Masculino</td>
+                    </c:if>
+                    <c:if test="${aluno.sexo eq 'f'}">         
+                        <td>Feminino</td>
+                    </c:if>
                     <td>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-default" data-toggle="modal" onclick="loadMedicamentos(${aluno.id})" data-target="#medicamento-${aluno.id}">

@@ -10,6 +10,9 @@
                 <tr>
                     <td width="40">#</td>
                     <td>Nome</td>
+                    <td>E-mail</td>
+                    <td>Função</td>
+                    <td>Sexo</td>
                     <td width="200">Ações</td>
                 </tr>
             </thead>
@@ -19,6 +22,14 @@
                     <tr>
                         <td>${profissional.id}</td>
                         <td>${profissional.nome}</td>
+                        <td><a href="mailto:${profissional.email}">${profissional.email}</a></td>
+                        <td>${profissional.funcao}</td>
+                        <c:if test="${profissional.sexo eq 'm'}">         
+                            <td>Masculino</td>
+                        </c:if>
+                        <c:if test="${profissional.sexo eq 'f'}">         
+                            <td>Feminino</td>
+                        </c:if>
                         <td>
                             <a href="profissionais/remove/${profissional.id}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
                             <a href="profissionais/editar/${profissional.id}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
