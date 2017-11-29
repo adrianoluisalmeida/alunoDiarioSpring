@@ -32,7 +32,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="${pageContext.request.contextPath}/">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/home">Home <span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/about">Sobre</a></li>
                     </ul>
 
